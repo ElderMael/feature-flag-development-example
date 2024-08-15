@@ -1,5 +1,5 @@
 # Use an official Java 22 base image for the build stage
-FROM openjdk:22-jdk-slim as builder
+FROM openjdk:22-jdk-slim AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -25,10 +25,10 @@ FROM openjdk:22-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file from the build stage
-COPY --from=builder /app/build/libs/myapp.jar ./myapp.jar
+COPY --from=builder /app/build/libs/api-1.0.jar ./api.jar
 
 # Expose the port the app runs on
 EXPOSE 8080
 
 # Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "myapp.jar"]
+ENTRYPOINT ["java", "-jar", "api.jar"]
