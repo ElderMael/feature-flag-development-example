@@ -1,10 +1,10 @@
 .PHONY: build-frontend
 build-frontend:
-	cd frontend; docker build -t eldermael:frontend .
+	cd frontend; docker build -t eldermael/frontend .
 
 .PHONY: build-api
 build-api:
-	cd api; docker build -t eldermael:api .
+	cd api; docker build -t eldermael/ffapi .
 
 .PHONY: build-cli
 build-cli:
