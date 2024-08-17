@@ -1,0 +1,8 @@
+driverClassName: "org.sqlite.JDBC"
+url: "jdbc:sqlite:memory:myDb?cache=shared"
+username: "sa"
+password: "sa"
+---
+logging:
+  level:
+    root: trace

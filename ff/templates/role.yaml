@@ -1,0 +1,24 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "ff.serviceAccountName" . }}-role
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "configmaps", "pods", "services", "endpoints", "secrets" ]
+    verbs: [ "get", "list", "watch" ]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: namespace-reader-binding
+  namespace: {{ .Release.Namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "ff.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+    apiGroup: ""
+roleRef:
+  kind: Role
+  name: {{ include "ff.serviceAccountName" . }}-role
+  apiGroup: ""

@@ -4,16 +4,16 @@ FROM openjdk:22-jdk-slim AS builder
 # Set the working directory
 WORKDIR /app
 
-# Copy the Gradle wrapper and build script files
-COPY gradle gradle
-COPY build.gradle.kts settings.gradle.kts ./
-COPY src ./src
-
 # Install Gradle 8.8
 RUN apt-get update && apt-get install -y wget unzip && \
     wget https://services.gradle.org/distributions/gradle-8.8-bin.zip && \
     unzip gradle-8.8-bin.zip -d /opt && \
     ln -s /opt/gradle-8.8/bin/gradle /usr/bin/gradle
+
+# Copy the Gradle wrapper and build script files
+COPY gradle gradle
+COPY build.gradle.kts settings.gradle.kts ./
+COPY src ./src
 
 # Build the Spring Boot application
 RUN gradle clean build

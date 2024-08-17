@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: "api"
+  cloud:
+    kubernetes:
+      client:
+        namespace: ff
+      config:
+        enabled: true
+        enableApi: true
+        name: api
+        namespace: ff
